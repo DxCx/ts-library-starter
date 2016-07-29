@@ -44,7 +44,7 @@ Files explained:
 
 Output files explained:
 ----
-    1. node_modules - directory npm creates with all the dependancies of the module (result of npm install)
+    1. node_modules - directory npm creates with all the dependencies of the module (result of npm install)
     2. typings      - directory typings creates with all the typings of the module  (result of typings install)
     3. lib          - directory contains the compiled library (javascript + typings)
     4. build        - directory contains the compiled tests (javascript only)

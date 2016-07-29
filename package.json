@@ -1,6 +1,6 @@
 {
   "name": "ts-library-starter",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Example git project that is used for typescript libraries as a starter pack",
   "main": "lib/main.js",
   "typings": "lib/main.d.ts",
