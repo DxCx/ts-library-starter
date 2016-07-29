@@ -16,16 +16,17 @@ Please note that you will need to rename the library name in some files:
     2. webpack.config.js (bundle_opts)
     3. package.json (ofcourse ;))
 
-Useful Commands:
+Useful commands:
 ----
-    npm run typings - install needed typings for compilation
-    npm run prebuild - install both NPM dependancies and the typings for them
-    npm run build - build the library files
+    npm run typings    - install needed typings for compilation
+    npm run prebuild   - install both NPM dependancies and the typings for them
+    npm run build      - build the library files
     npm run build:test - build both the library and the test files for it
-    npm run test - build the library, the tests, and run the tests.
-    npm run pack - build the library and the tests, make sure the tests passes, and then pack the library (creates .tgz)
+    npm run test       - build the library, the tests, and run the tests.
+    npm run pack       - build the library and the tests, make sure the tests passes, and then pack the library (creates .tgz)
+    npm publish        - publish the library in npm repositories
 
-Files Explained:
+Files explained:
 ----
     1. modules - directory is used for typescript code that is part of the project
         1a. modules/Example.ts - Just an example exported library, used to should import in tests.
@@ -40,3 +41,11 @@ Files Explained:
     7. typings.json            - typings needed for the library/tests
     8. webpack.config.js       - configuration file of the compilation automation process for the library
     9. webpack.config.test.js  - configuration file of the compilation automation process for the test
+
+Output files explained:
+----
+    1. node_modules - directory npm creates with all the dependancies of the module (result of npm install)
+    2. typings      - directory typings creates with all the typings of the module  (result of typings install)
+    3. lib          - directory contains the compiled library (javascript + typings)
+    4. build        - directory contains the compiled tests (javascript only)
+    5. <module_name>-<module_version>.tgz - final tgz file for publish. (result of npm run pack)
