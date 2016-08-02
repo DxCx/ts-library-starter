@@ -150,7 +150,7 @@ module.exports = {
 	},
 	module: {
 		preLoaders: [{ test: /\.ts$/, loader: 'tslint' }],
-		loaders: [{ test: /\.ts$/, loader: 'ts-loader' }]
+		loaders: [{ test: /\.ts$/, loader: 'babel-loader!ts-loader' }]
 	},
 	externals: nodeModules,
 	plugins: [

@@ -7,6 +7,7 @@ What does it include:
     1. exported class as example for an npm moudle
     2. packaging for npm modules (webpack + tslint + tsloader + dts-bundle)
     3. testings for npm modules (mocha + chai)
+    4. Typescript => ES6 => ES5 (babel)
 
 Notes
 ----
