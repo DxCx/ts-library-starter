@@ -2,7 +2,7 @@
   "name": "ts-library-starter",
   "version": "0.0.1",
   "globalDependencies": {
-    "node": "registry:dt/node#6.0.0+20160728152422"
+    "node": "registry:dt/node#6.0.0+20160802155038"
   },
   "dependencies": {
     "es6-promise": "registry:npm/es6-promise#3.0.0+20160723033700"

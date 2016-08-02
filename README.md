@@ -8,6 +8,7 @@ What does it include:
     2. packaging for npm modules (webpack + tslint + tsloader + dts-bundle)
     3. testings for npm modules (mocha + chai)
     4. Typescript => ES6 => ES5 (babel)
+    5. Two versions embed in the package, one for node, one for browser (browserify)
 
 Notes
 ----

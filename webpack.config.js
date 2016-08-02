@@ -1,9 +1,81 @@
 var webpack = require('webpack');
+var browserify = require('browserify');
 var path = require('path');
 var fs = require('fs');
 var os = require('os');
 var dts = require('dts-bundle');
 var deleteEmpty = require('delete-empty');
+
+/* small hack to build map of node modules used for excluding from webpack */
+var nodeModules = {};
+fs.readdirSync('node_modules').filter(function (x) {
+	return ['.bin'].indexOf(x) === -1;
+}).forEach(function (mod) {
+	nodeModules[mod] = 'commonjs ' + mod;
+});
+
+/* helper function to get into build directory */
+var libPath = function(name) {
+	if ( undefined === name ) {
+		return path.join(__dirname, 'lib');
+	}
+
+	return path.join(__dirname, 'lib', name);
+}
+
+/* helper to clean leftovers */
+var outputCleanup = function(dir, initial) {
+	if (false == fs.existsSync(libPath())){
+		return;
+	}
+
+	if ( true == initial ) {
+		console.log("Build leftover found, cleans it up.");
+	}
+
+	var list = fs.readdirSync(dir);
+	for(var i = 0; i < list.length; i++) {
+		var filename = path.join(dir, list[i]);
+		var stat = fs.statSync(filename);
+
+		if(filename == "." || filename == "..") {
+			// pass these files
+			} else if(stat.isDirectory()) {
+				// outputCleanup recursively
+				outputCleanup(filename, false);
+			} else {
+				// rm fiilename
+				fs.unlinkSync(filename);
+			}
+	}
+	fs.rmdirSync(dir);
+};
+
+/* precentage handler is used to hook build start and ending */
+var percentage_handler = function handler(percentage, msg) {
+	if ( 0 == percentage ) {
+		/* Build Started */
+		outputCleanup(libPath(), true);
+		console.log("Build started... Good luck!");
+	} else if ( 1 == percentage ) {
+		// TODO: No Error detection. :(
+		create_browser_version(webpack_opts.output.filename);
+
+		// Invokes dts bundling
+		console.log("Bundling d.ts files ...");
+		dts.bundle(bundle_opts);
+
+		// Invokes lib/ cleanup
+		deleteEmpty(bundle_opts.baseDir, function(err, deleted) {
+			if ( err ) {
+				console.error("Couldn't clean up : " + err);
+				throw err;
+			} else {
+				console.log("Cleanup " + deleted);
+			}
+		});
+	}
+}
 
 var bundle_opts = {
 
@@ -69,76 +141,7 @@ var bundle_opts = {
 	outputAsModuleFolder: true
 };
 
-/* small hack to build map of node modules used for excluding from webpack */
-var nodeModules = {};
-fs.readdirSync('node_modules').filter(function (x) {
-	return ['.bin'].indexOf(x) === -1;
-}).forEach(function (mod) {
-	nodeModules[mod] = 'commonjs ' + mod;
-});
-
-/* helper function to get into build directory */
-var libPath = function(name) {
-	if ( undefined === name ) {
-		return path.join(__dirname, 'lib');
-	}
-
-	return path.join(__dirname, 'lib', name);
-}
-
-/* helper to clean leftovers */
-var outputCleanup = function(dir, initial) {
-	if (false == fs.existsSync(libPath())){
-		return;
-	}
-
-	if ( true == initial ) {
-		console.log("Build leftover found, cleans it up.");
-	}
-
-	var list = fs.readdirSync(dir);
-	for(var i = 0; i < list.length; i++) {
-		var filename = path.join(dir, list[i]);
-		var stat = fs.statSync(filename);
-
-		if(filename == "." || filename == "..") {
-			// pass these files
-			} else if(stat.isDirectory()) {
-				// outputCleanup recursively
-				outputCleanup(filename, false);
-			} else {
-				// rm fiilename
-				fs.unlinkSync(filename);
-			}
-	}
-	fs.rmdirSync(dir);
-};
-
-/* precentage handler is used to hook build start and ending */
-var percentage_handler = function handler(percentage, msg) {
-	if ( 0 == percentage ) {
-		/* Build Started */
-		outputCleanup(libPath(), true);
-		console.log("Build started... Good luck!");
-	} else if ( 1 == percentage ) {
-		// TODO: No Error detection. :(
-
-		// Invokes dts bundling
-		dts.bundle(bundle_opts);
-
-		// Invokes lib/ cleanup
-		deleteEmpty(bundle_opts.baseDir, function(err, deleted) {
-			if ( err ) {
-				console.error("Couldn't clean up : " + err);
-				throw err;
-			} else {
-				console.log("Cleanup " + deleted);
-			}
-		});
-	}
-}
-
-module.exports = {
+var webpack_opts = {
 	entry: './modules/main.ts',
 	target: 'node',
 	output: {
@@ -168,3 +171,22 @@ module.exports = {
 		configFileName: 'tsconfig.json'
 	}
 }
+
+var create_browser_version = function (inputJs) {
+	let outputName = inputJs.replace(/\.[^/.]+$/, "");
+	outputName = `${outputName}.browser.js`;
+	console.log("Creating browser version ...");
+
+	let b = browserify(inputJs, {
+		standalone: bundle_opts.name,
+	});
+
+	b.bundle(function(err, src) {
+		if ( err != null ) {
+			console.error("Browserify error:");
+			console.error(err);
+		}
+	}).pipe(fs.createWriteStream(outputName));
+}
+
+module.exports = webpack_opts;
