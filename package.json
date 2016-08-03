@@ -26,7 +26,17 @@
     "example",
     "typescript",
     "library",
-    "starter"
+    "starter",
+    "webpack",
+    "browserify",
+    "dts-bundle",
+    "package",
+    "tslint",
+    "mocha",
+    "chai",
+    "babel",
+    "tsloader",
+    "ts-loader"
   ],
   "author": "Hagai Cohen",
   "license": "MIT",
