@@ -1,3 +1,4 @@
+var nodeExternals = require('webpack-node-externals');
 var webpack = require('webpack');
 var browserify = require('browserify');
 var path = require('path');
@@ -5,14 +6,6 @@ var fs = require('fs');
 var os = require('os');
 var dts = require('dts-bundle');
 var deleteEmpty = require('delete-empty');
-
-/* small hack to build map of node modules used for excluding from webpack */
-var nodeModules = {};
-fs.readdirSync('node_modules').filter(function (x) {
-	return ['.bin'].indexOf(x) === -1;
-}).forEach(function (mod) {
-	nodeModules[mod] = 'commonjs ' + mod;
-});
 
 /* helper function to get into build directory */
 var libPath = function(name) {
@@ -155,7 +148,7 @@ var webpack_opts = {
 		preLoaders: [{ test: /\.ts$/, loader: 'tslint' }],
 		loaders: [{ test: /\.ts$/, loader: 'babel-loader!ts-loader' }]
 	},
-	externals: nodeModules,
+	externals: [nodeExternals()],
 	plugins: [
 		// TODO: Minifiy JS.
 		//		new webpack.optimize.UglifyJsPlugin(),
