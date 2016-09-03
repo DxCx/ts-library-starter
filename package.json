@@ -14,6 +14,7 @@
     "prebuild": "npm install",
     "build": "webpack || echo not ok",
     "test": "mocha-webpack",
+    "test:watch": "npm test -- --watch",
     "prepack": "npm run build && npm test",
     "pack": "npm pack"
   },
