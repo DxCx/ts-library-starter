@@ -10,10 +10,10 @@ var deleteEmpty = require('delete-empty');
 /* helper function to get into build directory */
 var libPath = function(name) {
 	if ( undefined === name ) {
-		return path.join(__dirname, 'lib');
+		return 'lib';
 	}
 
-	return path.join(__dirname, 'lib', name);
+	return path.join('lib', name);
 }
 
 /* helper to clean leftovers */
@@ -81,18 +81,18 @@ var bundle_opts = {
 	// if you want to load all .d.ts files from a path recursively you can use "path/project/**/*.d.ts"
 	//  ^ *** Experimental, TEST NEEDED, see "All .d.ts files" section
 	// - either relative or absolute
-	main: 'lib/main.d.ts',
+	main: 'modules/main.d.ts',
 
 	// Optional
 
 	// base directory to be used for discovering type declarations (i.e. from this project itself)
 	// - default: dirname of main
-	baseDir: 'lib',
+	baseDir: 'modules',
 	// path of output file. Is relative from baseDir but you can use absolute paths.
 	// if starts with "~/" then is relative to current path. See https://github.com/TypeStrong/dts-bundle/issues/26
 	//  ^ *** Experimental, TEST NEEDED
 	// - default: "<baseDir>/<name>.d.ts"
-	out: 'main.d.ts',
+	out: '../lib/main.d.ts',
 	// include typings outside of the 'baseDir' (i.e. like node.d.ts)
 	// - default: false
 	externals: false,
@@ -142,26 +142,25 @@ var webpack_opts = {
 		libraryTarget: "commonjs2"
 	},
 	resolve: {
-		extensions: ['', '.ts', '.js']
+		extensions: ['', '.ts', '.js'],
+		modules: [
+			'node_modules',
+			'modules',
+		]
 	},
 	module: {
-		preLoaders: [{ test: /\.ts$/, loader: 'tslint' }],
-		loaders: [{ test: /\.ts$/, loader: 'babel-loader!ts-loader' }]
+		preLoaders: [{ test: /\.ts$/, loaders: ['tslint'] }],
+		loaders: [{ test: /\.ts$/, loaders: ['babel-loader', 'awesome-typescript-loader'] }]
 	},
 	externals: [nodeExternals()],
 	plugins: [
 		// TODO: Minifiy JS.
 		//		new webpack.optimize.UglifyJsPlugin(),
-		new webpack.IgnorePlugin(/\.(css|less)$/),
 		new webpack.ProgressPlugin(percentage_handler)
 	],
 	tslint: {
 		emitErrors: true,
 		failOnHint: true
-	},
-	ts: {
-		compiler: 'typescript',
-		configFileName: 'tsconfig.json'
 	}
 }
 

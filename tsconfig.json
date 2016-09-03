@@ -1,6 +1,7 @@
 {
 	"compilerOptions": {
 		"experimentalDecorators": true,
+		"lib": ["es6", "dom"],
 		"module": "commonjs",
 		"target": "es6",
 		"noImplicitAny": true,
@@ -9,14 +10,15 @@
 		"emitDecoratorMetadata": true,
 		"sourceMap": false,
 		"declaration": true,
-		"outDir": "./lib",
-		"rootDir": "./modules",
-		"removeComments": false
+		"outDir": "lib",
+		"removeComments": false,
+		"typeRoots": [
+			"node_modules/@types"
+		],
+		"types": []
 	},
 	"files": [
-		"modules/index.ts",
-		"modules/main.ts",
-		"typings/index.d.ts"
+		"modules/main.ts"
 	],
 	"exclude": [
 		"node_modules"

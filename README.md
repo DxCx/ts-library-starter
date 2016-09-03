@@ -5,7 +5,7 @@ Example git project that is used for typescript libraries as a starter pack
 What does it include:
 ----
     1. exported class as example for an npm moudle
-    2. packaging for npm modules (webpack + tslint + tsloader + dts-bundle)
+    2. packaging for npm modules (webpack + tslint + awesome-typescript-loader + dts-bundle)
     3. testings for npm modules (mocha + chai)
     4. Typescript => ES6 => ES5 (babel)
     5. Two versions embed in the package, one for node, one for browser (browserify)

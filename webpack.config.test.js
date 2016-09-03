@@ -15,10 +15,10 @@ fs.readdirSync('node_modules')
 /* helper function to get into build directory */
 var libPath = function(name) {
 	if ( null === name ) {
-		return path.join(__dirname, 'build');
+		return path.join('build');
 	}
 
-	return path.join(__dirname, 'build', name);
+	return path.join('build', name);
 }
 
 module.exports = {

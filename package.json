@@ -11,12 +11,10 @@
     "lib/main.js": "./lib/main.browser.js"
   },
   "scripts": {
-    "typings": "typings",
-    "prebuild": "npm install && npm run typings install",
+    "prebuild": "npm install",
     "build": "webpack || echo not ok",
     "build:test": "npm run build && webpack --config webpack.config.test.js",
     "test": "npm run build:test && mocha build/test.js",
-    "postinstall": "typings install",
     "pack": "npm run test && npm pack"
   },
   "repository": {
@@ -37,7 +35,7 @@
     "chai",
     "babel",
     "tsloader",
-    "ts-loader"
+    "awesome-typescript-loader"
   ],
   "author": "Hagai Cohen",
   "license": "MIT",
@@ -45,22 +43,22 @@
     "url": "https://github.com/DxCx/ts-library-starter/issues"
   },
   "homepage": "https://github.com/DxCx/ts-library-starter#readme",
-  "dependencies": {},
   "devDependencies": {
-    "babel-core": "^6.11.4",
-    "babel-loader": "^6.2.4",
-    "babel-preset-es2015": "^6.9.0",
+    "@types/chai": "^3.4.32",
+    "@types/mocha": "^2.2.31",
+    "awesome-typescript-loader": "^2.2.1",
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.14.0",
     "browserify": "^13.1.0",
     "chai": "^3.5.0",
     "delete-empty": "^0.1.3",
     "dts-bundle": "^0.5.0",
-    "mocha": "^2.5.3",
-    "ts-loader": "^0.8.2",
-    "tslint": "^3.13.0",
+    "mocha": "^3.0.2",
+    "tslint": "^3.15.1",
     "tslint-loader": "^2.1.5",
-    "typescript": "^1.8.10",
-    "typings": "^1.3.1",
-    "webpack": "^1.13.1",
+    "typescript": "2.0.0",
+    "webpack": "^2.1.0-beta.21",
     "webpack-node-externals": "^1.3.3"
   }
 }
