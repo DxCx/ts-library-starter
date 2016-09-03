@@ -6,6 +6,7 @@ var fs = require('fs');
 var os = require('os');
 var dts = require('dts-bundle');
 var deleteEmpty = require('delete-empty');
+var failPlugin = require('webpack-fail-plugin');
 
 /* helper function to get into build directory */
 var libPath = function(name) {
@@ -154,6 +155,7 @@ var webpack_opts = {
 	},
 	externals: [nodeExternals()],
 	plugins: [
+		failPlugin,
 		// TODO: Minifiy JS.
 		//		new webpack.optimize.UglifyJsPlugin(),
 		new webpack.ProgressPlugin(percentage_handler)

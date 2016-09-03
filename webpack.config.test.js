@@ -1,3 +1,4 @@
+var failPlugin = require('webpack-fail-plugin');
 var nodeExternals = require('webpack-node-externals');
 var webpack = require('webpack');
 var path = require('path');
@@ -18,6 +19,7 @@ module.exports = {
 		}],
 	},
 	plugins: [
+		failPlugin,
 		new IstanbulPlugin({
 			test: /\.ts$/,
 			include: [

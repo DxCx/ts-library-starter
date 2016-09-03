@@ -1,6 +1,6 @@
 
 export class Example {
-    private covered = false;
+    private covered: boolean = false;
     /* Some code in here :) */
 
     public coverageTest() {
