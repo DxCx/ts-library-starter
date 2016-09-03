@@ -15,7 +15,7 @@
     "build": "webpack || echo not ok",
     "test": "mocha-webpack",
     "test:watch": "npm test -- --watch",
-    "prepack": "npm run build && npm test",
+    "prepack": "standard-version && npm run build && npm test",
     "pack": "npm pack"
   },
   "repository": {
@@ -60,6 +60,7 @@
     "mocha": "^3.0.2",
     "mocha-istanbul-spec": "^0.3.0-remap",
     "mocha-webpack": "^0.6.0",
+    "standard-version": "^2.4.0",
     "tslint": "^3.15.1",
     "tslint-loader": "^2.1.5",
     "typescript": "2.0.0",
