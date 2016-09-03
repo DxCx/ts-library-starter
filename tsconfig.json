@@ -15,7 +15,9 @@
 		"typeRoots": [
 			"node_modules/@types"
 		],
-		"types": []
+		"types": [
+			"@types/node"
+		]
 	},
 	"files": [
 		"modules/main.ts"

@@ -1,8 +1,8 @@
-node_modules/
-typings/
-lib/
-build/
-docker-compose.yaml
-*.d.ts
-*.log
-*.tgz
+*
+!modules/
+!modules/*
+!*.js
+!*.json
+!*.md
+!.babelrc
+!mocha-webpack.opts

@@ -1,46 +1,44 @@
+var nodeExternals = require('webpack-node-externals');
 var webpack = require('webpack');
 var path = require('path');
-var fs = require('fs');
-
-/* small hack to build map of node modules used for excluding from webpack */
-var nodeModules = {};
-fs.readdirSync('node_modules')
-.filter(function (x) {
-	return ['.bin'].indexOf(x) === -1;
-})
-.forEach(function (mod) {
-	nodeModules[mod] = 'commonjs ' + mod;
-});
-
-/* helper function to get into build directory */
-var libPath = function(name) {
-	if ( null === name ) {
-		return path.join('build');
-	}
-
-	return path.join('build', name);
-}
+var IstanbulPlugin = require('webpack-istanbul-plugin');
 
 module.exports = {
-	entry: './test/test.ts',
-	target: 'node',
-	output: {
-		filename: libPath('test.js')
-	},
-	resolve: {
-		extensions: ['', '.ts', '.js']
-	},
+	target: 'node', // in order to ignore built-in modules like path, fs, etc.
+	devtool: 'inline-source-map',
+	externals: [nodeExternals()], // in order to ignore all modules in node_modules folder
 	module: {
-		preLoaders: [{ test: /\.ts$/, loader: 'tslint' }],
-		loaders: [{ test: /\.ts$/, loader: 'babel-loader!ts-loader' }]
+		preLoaders: [{
+			test: /\.ts$/,
+			loaders: ['tslint']
+		}],
+		loaders: [{
+			test: /\.ts$/,
+			loaders: ['awesome-typescript-loader?declaration=false&inlineSourceMap=true'],
+		}],
 	},
+	plugins: [
+		new IstanbulPlugin({
+			test: /\.ts$/,
+			include: [
+				path.resolve('modules'),
+			],
+			exclude: [
+				path.resolve('node_modules'),
+				/\.spec\.ts$/,
+				/main\.test\.ts$/,
+			],
+		}),
+	],
 	tslint: {
 		emitErrors: true,
-		failOnHint: true
+		failOnHint: true,
 	},
-	externals: nodeModules,
-	ts: {
-		compiler: 'typescript',
-		configFileName: 'tsconfig.test.json'
-	}
-}
+	resolve: {
+		extensions: ['', '.ts', '.js'],
+		modules: [
+			'node_modules',
+			'modules',
+		]
+	},
+};
