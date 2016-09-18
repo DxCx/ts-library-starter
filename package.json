@@ -15,8 +15,8 @@
     "build": "webpack || echo not ok",
     "test": "mocha-webpack",
     "test:watch": "npm test -- --watch",
-    "prepack": "standard-version && npm run build && npm test",
-    "pack": "npm pack"
+    "prerelease": "npm run build && npm test",
+    "release": "standard-version && npm pack"
   },
   "repository": {
     "type": "git",
