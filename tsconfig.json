@@ -10,7 +10,7 @@
 		"emitDecoratorMetadata": true,
 		"sourceMap": false,
 		"declaration": true,
-		"outDir": "lib",
+		"outDir": "dist",
 		"removeComments": false,
 		"typeRoots": [
 			"node_modules/@types"

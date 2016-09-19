@@ -10,10 +10,10 @@ var deleteEmpty = require('delete-empty');
 /* helper function to get into build directory */
 var libPath = function(name) {
 	if ( undefined === name ) {
-		return 'lib';
+		return 'dist';
 	}
 
-	return path.join('lib', name);
+	return path.join('dist', name);
 }
 
 /* helper to clean leftovers */
@@ -92,7 +92,7 @@ var bundle_opts = {
 	// if starts with "~/" then is relative to current path. See https://github.com/TypeStrong/dts-bundle/issues/26
 	//  ^ *** Experimental, TEST NEEDED
 	// - default: "<baseDir>/<name>.d.ts"
-	out: '../lib/main.d.ts',
+	out: '../dist/main.d.ts',
 	// include typings outside of the 'baseDir' (i.e. like node.d.ts)
 	// - default: false
 	externals: false,

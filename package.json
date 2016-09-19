@@ -2,13 +2,13 @@
   "name": "ts-library-starter",
   "version": "0.0.6",
   "description": "Example git project that is used for typescript libraries as a starter pack",
-  "main": "lib/main.js",
-  "typings": "lib/main.d.ts",
+  "main": "dist/main.js",
+  "typings": "dist/main.d.ts",
   "jam": {
-    "main": "./lib/main.browser.js"
+    "main": "./dist/main.browser.js"
   },
   "browser": {
-    "lib/main.js": "./lib/main.browser.js"
+    "dist/main.js": "./dist/main.browser.js"
   },
   "scripts": {
     "prebuild": "npm install",
