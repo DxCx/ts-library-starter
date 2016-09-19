@@ -81,13 +81,13 @@ var bundle_opts = {
 	// if you want to load all .d.ts files from a path recursively you can use "path/project/**/*.d.ts"
 	//  ^ *** Experimental, TEST NEEDED, see "All .d.ts files" section
 	// - either relative or absolute
-	main: 'modules/main.d.ts',
+	main: 'src/main.d.ts',
 
 	// Optional
 
 	// base directory to be used for discovering type declarations (i.e. from this project itself)
 	// - default: dirname of main
-	baseDir: 'modules',
+	baseDir: 'src',
 	// path of output file. Is relative from baseDir but you can use absolute paths.
 	// if starts with "~/" then is relative to current path. See https://github.com/TypeStrong/dts-bundle/issues/26
 	//  ^ *** Experimental, TEST NEEDED
@@ -135,7 +135,7 @@ var bundle_opts = {
 };
 
 var webpack_opts = {
-	entry: './modules/main.ts',
+	entry: './src/main.ts',
 	target: 'node',
 	output: {
 		filename: libPath('main.js'),
@@ -145,7 +145,7 @@ var webpack_opts = {
 		extensions: ['', '.ts', '.js'],
 		modules: [
 			'node_modules',
-			'modules',
+			'src',
 		]
 	},
 	module: {

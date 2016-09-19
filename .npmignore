@@ -1,2 +1,4 @@
 *
-!lib/*
+!lib/**/*
+!package.json
+!*.md
