@@ -7,3 +7,5 @@
 !.babelrc
 !.gitignore
 !.travis.yml
+!LICENSE
+!.npmignore
