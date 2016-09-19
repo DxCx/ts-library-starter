@@ -1,7 +1,7 @@
 # ts-library-starter
 [![NPM version](https://img.shields.io/npm/v/ts-library-starter.svg)](https://www.npmjs.com/package/ts-library-starter)
 [![Build Status](https://travis-ci.org/DxCx/ts-library-starter.svg?branch=master)](https://travis-ci.org/DxCx/ts-library-starter)
-[![Coverage Status](https://coveralls.io/repos/DxCx/ts-library-starter/badge.svg?branch=)](https://coveralls.io/r/DxCx/ts-library-starter?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/DxCx/ts-library-starter/badge.svg?branch=master)](https://coveralls.io/github/DxCx/ts-library-starter?branch=master)
 [![Standard Version](https://img.shields.io/badge/release-standard%20version-brightgreen.svg)](https://github.com/conventional-changelog/standard-version)
 
 Example git project that is used for typescript libraries as a starter pack
