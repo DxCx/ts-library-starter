@@ -10,7 +10,7 @@
 		"emitDecoratorMetadata": true,
 		"sourceMap": false,
 		"declaration": true,
-		"outDir": "lib",
+		"outDir": "dist",
 		"removeComments": false,
 		"typeRoots": [
 			"node_modules/@types"
@@ -20,7 +20,7 @@
 		]
 	},
 	"files": [
-		"modules/main.ts"
+		"src/main.ts"
 	],
 	"exclude": [
 		"node_modules"

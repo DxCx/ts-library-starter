@@ -2,21 +2,23 @@
   "name": "ts-library-starter",
   "version": "0.0.6",
   "description": "Example git project that is used for typescript libraries as a starter pack",
-  "main": "lib/main.js",
-  "typings": "lib/main.d.ts",
+  "main": "dist/main.js",
+  "typings": "dist/main.d.ts",
   "jam": {
-    "main": "./lib/main.browser.js"
+    "main": "./dist/main.browser.js"
   },
   "browser": {
-    "lib/main.js": "./lib/main.browser.js"
+    "dist/main.js": "./dist/main.browser.js"
   },
   "scripts": {
     "prebuild": "npm install",
     "build": "webpack || echo not ok",
-    "test": "mocha-webpack",
+    "test": "jest",
     "test:watch": "npm test -- --watch",
-    "prepack": "standard-version && npm run build && npm test",
-    "pack": "npm pack"
+    "coverage": "npm test -- --coverage --no-cache",
+    "coverage:watch": "npm run coverage -- --watch",
+    "prerelease": "npm run build && npm test",
+    "release": "standard-version && npm pack"
   },
   "repository": {
     "type": "git",
@@ -32,10 +34,10 @@
     "dts-bundle",
     "package",
     "tslint",
-    "mocha",
-    "chai",
+    "jest",
     "babel",
     "tsloader",
+    "boilerplate",
     "awesome-typescript-loader"
   ],
   "author": "Hagai Cohen",
@@ -45,28 +47,33 @@
   },
   "homepage": "https://github.com/DxCx/ts-library-starter#readme",
   "devDependencies": {
-    "@types/chai": "^3.4.32",
-    "@types/mocha": "^2.2.31",
+    "@types/jest": "^0.9.31",
     "@types/node": "^6.0.38",
     "awesome-typescript-loader": "^2.2.1",
     "babel-core": "^6.14.0",
     "babel-loader": "^6.2.5",
     "babel-preset-es2015": "^6.14.0",
     "browserify": "^13.1.0",
-    "chai": "^3.5.0",
     "delete-empty": "^0.1.3",
     "dts-bundle": "^0.5.0",
-    "istanbul": "^0.4.5",
-    "mocha": "^3.0.2",
-    "mocha-istanbul-spec": "^0.3.0-remap",
-    "mocha-webpack": "^0.6.0",
+    "jest": "^15.1.1",
     "standard-version": "^2.4.0",
     "tslint": "^3.15.1",
     "tslint-loader": "^2.1.5",
     "typescript": "2.0.0",
+    "typescript-babel-jest": "^0.1.2",
     "webpack": "^2.1.0-beta.22",
-    "webpack-fail-plugin": "^1.0.5",
-    "webpack-istanbul-plugin": "0.0.3",
-    "webpack-node-externals": "^1.3.3"
+    "webpack-node-externals": "^1.4.3"
+  },
+  "dependencies": {},
+  "jest": {
+    "scriptPreprocessor": "node_modules/typescript-babel-jest",
+    "testEnvironment": "node",
+    "testRegex": ".*\\.spec\\.ts$",
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "json"
+    ]
   }
 }

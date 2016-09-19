@@ -1,9 +1,9 @@
 *
-!modules/
-!modules/*
+!src/
+!src/**/*
 !*.js
 !*.json
 !*.md
 !.babelrc
-!mocha-webpack.opts
 !.gitignore
+!.travis.yml
