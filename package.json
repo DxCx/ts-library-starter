@@ -52,6 +52,7 @@
     "awesome-typescript-loader": "^2.2.1",
     "babel-core": "^6.14.0",
     "babel-loader": "^6.2.5",
+    "babel-polyfill": "^6.13.0",
     "babel-preset-es2015": "^6.14.0",
     "browserify": "^13.1.0",
     "delete-empty": "^0.1.3",
@@ -62,7 +63,7 @@
     "tslint-loader": "^2.1.5",
     "typescript": "2.0.0",
     "typescript-babel-jest": "^0.1.2",
-    "webpack": "^2.1.0-beta.22",
+    "webpack": "2.1.0-beta.22",
     "webpack-node-externals": "^1.4.3"
   },
   "dependencies": {},
