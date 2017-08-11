@@ -1,5 +1,5 @@
 {
-  "name": "ts-library-starter",
+  "name": "ioo",
   "version": "0.1.0",
   "description": "Example git project that is used for typescript libraries as a starter pack",
   "main": "dist/main.js",
@@ -70,11 +70,7 @@
   "jest": {
     "scriptPreprocessor": "node_modules/typescript-babel-jest",
     "testEnvironment": "node",
-    "testRegex": ".*\\.spec\\.ts$",
-    "moduleFileExtensions": [
-      "ts",
-      "js",
-      "json"
-    ]
+    "testRegex": ".*\\.test\\.ts$",
+    "moduleFileExtensions": ["ts", "js", "json"]
   }
 }
