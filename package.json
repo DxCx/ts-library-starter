@@ -66,11 +66,17 @@
     "webpack": "2.1.0-beta.22",
     "webpack-node-externals": "^1.4.3"
   },
-  "dependencies": {},
+  "dependencies": {
+    "ramda": "0.24.1"
+  },
   "jest": {
     "scriptPreprocessor": "node_modules/typescript-babel-jest",
     "testEnvironment": "node",
     "testRegex": ".*\\.test\\.ts$",
-    "moduleFileExtensions": ["ts", "js", "json"]
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "json"
+    ]
   }
 }
