@@ -1,6 +1,6 @@
 {
-  "name": "ts-library-starter",
-  "version": "0.1.0",
+  "name": "ioo",
+  "version": "0.1.1",
   "description": "Example git project that is used for typescript libraries as a starter pack",
   "main": "dist/main.js",
   "typings": "dist/main.d.ts",
@@ -66,11 +66,13 @@
     "webpack": "2.1.0-beta.22",
     "webpack-node-externals": "^1.4.3"
   },
-  "dependencies": {},
+  "dependencies": {
+    "ramda": "0.24.1"
+  },
   "jest": {
     "scriptPreprocessor": "node_modules/typescript-babel-jest",
     "testEnvironment": "node",
-    "testRegex": ".*\\.spec\\.ts$",
+    "testRegex": ".*\\.test\\.ts$",
     "moduleFileExtensions": [
       "ts",
       "js",
