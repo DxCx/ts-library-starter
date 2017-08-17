@@ -2,22 +2,21 @@
   "name": "ts-library-starter",
   "version": "0.1.0",
   "description": "Example git project that is used for typescript libraries as a starter pack",
-  "main": "dist/main.js",
-  "typings": "dist/main.d.ts",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "jam": {
-    "main": "./dist/main.browser.js"
+    "main": "./dist/index.browser.js"
   },
   "browser": {
-    "dist/main.js": "./dist/main.browser.js"
+    "dist/index.js": "./dist/index.browser.js"
   },
   "scripts": {
-    "prebuild": "npm install",
     "build": "webpack || echo not ok",
     "test": "jest",
     "test:watch": "npm test -- --watch",
     "coverage": "npm test -- --coverage --no-cache",
     "coverage:watch": "npm run coverage -- --watch",
-    "prerelease": "npm run build && npm test",
+    "prepare": "npm run build && npm test",
     "release": "standard-version && npm pack"
   },
   "repository": {
@@ -35,10 +34,9 @@
     "package",
     "tslint",
     "jest",
-    "babel",
     "tsloader",
     "boilerplate",
-    "awesome-typescript-loader"
+    "ts-loader"
   ],
   "author": "Hagai Cohen",
   "license": "MIT",
@@ -47,30 +45,31 @@
   },
   "homepage": "https://github.com/DxCx/ts-library-starter#readme",
   "devDependencies": {
-    "@types/jest": "^0.9.31",
-    "@types/node": "^6.0.38",
-    "awesome-typescript-loader": "^2.2.1",
-    "babel-core": "^6.14.0",
-    "babel-loader": "^6.2.5",
-    "babel-polyfill": "^6.13.0",
-    "babel-preset-es2015": "^6.14.0",
-    "browserify": "^13.1.0",
-    "delete-empty": "^0.1.3",
-    "dts-bundle": "^0.5.0",
-    "jest": "^15.1.1",
-    "standard-version": "^2.4.0",
-    "tslint": "^3.15.1",
-    "tslint-loader": "^2.1.5",
-    "typescript": "2.0.0",
-    "typescript-babel-jest": "^0.1.2",
-    "webpack": "2.1.0-beta.22",
-    "webpack-node-externals": "^1.4.3"
+    "@types/jest": "^20.0.7",
+    "@types/node": "^8.0.24",
+    "browserify": "^14.4.0",
+    "delete-empty": "^1.0.1",
+    "dts-bundle": "^0.7.3",
+    "jest": "^20.0.4",
+    "standard-version": "^4.2.0",
+    "ts-jest": "^20.0.10",
+    "ts-loader": "^2.3.3",
+    "tslint": "^5.6.0",
+    "tslint-loader": "^3.5.3",
+    "typescript": "2.4.2",
+    "webpack": "3.5.5",
+    "webpack-node-externals": "^1.6.0"
   },
   "dependencies": {},
   "jest": {
-    "scriptPreprocessor": "node_modules/typescript-babel-jest",
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "mapCoverage": true,
+    "collectCoverageFrom": ["src/**/*.ts"],
+    "coveragePathIgnorePatterns": ["\/__tests__\/", "\/node_modules\/"],
     "testEnvironment": "node",
-    "testRegex": ".*\\.spec\\.ts$",
+    "testRegex": "__tests__/.*\\.spec\\.ts$",
     "moduleFileExtensions": [
       "ts",
       "js",

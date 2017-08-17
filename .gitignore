@@ -1,10 +1,10 @@
 *
+!yarn.lock
 !src/
 !src/**/*
 !*.js
 !*.json
 !*.md
-!.babelrc
 !.gitignore
 !.travis.yml
 !LICENSE

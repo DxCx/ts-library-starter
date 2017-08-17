@@ -12,7 +12,7 @@ What does it include:
     2. packaging for npm modules (webpack + tslint + awesome-typescript-loader + dts-bundle)
     3. testings for npm modules (jest)
     4. code coverage (jest) when running tests
-    5. Typescript => ES6 => ES5 (babel)
+    5. Typescript => ES5
     6. Two versions embed in the package, one for node, one for browser (browserify)
 
 Notes
@@ -40,7 +40,6 @@ Files explained:
         1a. src/Example.ts - Just an example exported library, used to should import in tests.
         1b. src/Example.spec.ts - tests for the example class
         1c. src/index.ts        - index, which functionality is exported from the library
-        1d. src/main.ts         - just wrapper for index
     3. package.json                 - file is used to describe the library
     4. tsconfig.json                - configuration file for the library compilation
     6. tslint.json                  - configuration file for the linter (both test and library)
