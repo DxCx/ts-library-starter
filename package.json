@@ -51,7 +51,7 @@
     "delete-empty": "^1.0.1",
     "dts-bundle": "^0.7.3",
     "jest": "^20.0.4",
-    "standard-version": "^4.2.0",
+    "standard-version": "^8.0.1",
     "ts-jest": "^20.0.10",
     "ts-loader": "^2.3.3",
     "tslint": "^5.6.0",
